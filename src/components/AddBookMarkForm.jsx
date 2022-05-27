@@ -58,7 +58,7 @@ const AddBookMarkForm = () => {
             />
             
             Note:
-            <input
+            <textarea
                 type="text"
                 value={remark}
                 onChange={ev => setRemark(ev.target.value)}
