@@ -9,11 +9,14 @@ const AddBookMarkForm = () => {
     const [status, setStatus] = useState("");
 
     async function addBookMark() {
+
+        let datetime = (new Date()).toLocaleString();
         try {
             const id = await db.notes.add({
                 book,
                 chapter,
                 verse,
+                datetime,
                 remark
             });
 
@@ -21,6 +24,7 @@ const AddBookMarkForm = () => {
             setBook("");
             setChapter("");
             setVerse("");
+            // datetime;
             setRemark("");
         } catch (error) {
             setStatus(`Failed to add ${book} ${chapter},${verse}: Error ${error}`);
