@@ -1,4 +1,5 @@
 import { useLiveQuery } from "dexie-react-hooks";
+import { Link } from "react-router-dom";
 import { db } from "../db";
 
 const NotesList = () => {
@@ -10,13 +11,6 @@ const NotesList = () => {
         });
     }
 
-    function editNote(note_id) {
-        return db.transaction('r', [db.notes], async () => {
-            const noteDetails = await db.notes.get({id: note_id});
-            console.log(noteDetails);
-        });  
-    }
-
     const notes = useLiveQuery(() => db.notes.toArray());
 
     return (
@@ -25,12 +19,13 @@ const NotesList = () => {
                 notes?.map(note => <li key={note.id}>
                 {note.datetime}: {note.book}, {note.chapter}:{note.verse}
                 {note.remark}
-                <button onClick={() => deleteNote(note.id)}> 
-                    Delete
-                </button>
-                <button onClick={() => editNote(note.id)}> 
-                    Edit
-                </button>
+                    <button onClick={() => deleteNote(note.id)}> 
+                        Delete
+                    </button>
+
+                    <Link to={`/note/${note.id}`}>
+                        View
+                    </Link>
                 </li>)
             }
         </ul>

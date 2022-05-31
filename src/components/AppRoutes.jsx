@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom"; 
 
 import AddBookMarkForm from "./AddBookMarkForm";
+import EditNotes from "./EditNotes";
 
 const NotesList = lazy(() => import("./NotesList"));
 
@@ -11,8 +12,11 @@ const AppRoutes = () => {
             <BrowserRouter>
                 <Suspense fallback={<div>Učitavam...</div>}>
                     <Routes>
-                        <Route path="/add" element={<AddBookMarkForm />}/>
                         <Route path="/" element={<NotesList />}/>
+                        <Route path="/notes" element={<NotesList />}/>
+                        <Route path="/note/add" element={<AddBookMarkForm />}/>
+                        <Route path="/note/:id" element={<EditNotes />}/>
+                        <Route path="*" element={<NotesList />}/>
                     </Routes>
                 </Suspense>
             </BrowserRouter>
