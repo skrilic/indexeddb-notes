@@ -14,21 +14,21 @@ const NotesList = () => {
     const notes = useLiveQuery(() => db.notes.toArray());
 
     return (
-        <ul>
+        <div>
             {
-                notes?.map(note => <li key={note.id}>
+                notes?.map(note => <p key={note.id}>
                 {note.datetime}: {note.book}, {note.chapter}:{note.verse}
                 {note.remark}
-                    <button onClick={() => deleteNote(note.id)}> 
+                    <span className="button-area" onClick={() => deleteNote(note.id)}> 
                         Delete
-                    </button>
+                    </span>
 
-                    <Link to={`/note/${note.id}`}>
+                    <Link className="button-area" to={`/note/${note.id}`}>
                         View
                     </Link>
-                </li>)
+                </p>)
             }
-        </ul>
+        </div>
       );
 }
  

@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.button-area {
+  width: fit-content;
+  padding: 0.2rem;
+  margin: auto 0.2rem;
+  background: lightgrey;
+  cursor: pointer;
+}
+
+.button-area:hover {
+  background: gray;
+  color: aliceblue;
+}
+
