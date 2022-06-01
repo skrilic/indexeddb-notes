@@ -1,22 +1,29 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../db";
 
 const EditNotes = () => {
     const { id } = useParams();
+    const hasDetails = useRef(false);
     const [theNote, setTheNote] = useState({});
 
     const [remarkValue, setRemarkValue] = useState("");
 
-    db.transaction('rw', [db.notes], async () => {
-        const theNote = await db.notes.get({id: Number(id)});
-        // console.log(theNote);
-        setTheNote(theNote);
-        setRemarkValue(theNote.remark);
-    });
+    useEffect(() => {
+        if (!hasDetails.current) {
+            db.transaction('rw', [db.notes], async () => {
+                const theNote = await db.notes.get({id: Number(id)});
+                // console.log(theNote);
+                setTheNote(theNote);
+                setRemarkValue(theNote.remark);
+            });
+        }
+        hasDetails.current = true;
+    }, [id])
+    
 
     const handleChangeRemark = (event) => {
-        setRemarkValue({remark: event.target.value});
+        setRemarkValue(event.target.value);
     }
 
     const updateNote = () => {
