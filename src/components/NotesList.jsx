@@ -1,3 +1,4 @@
+import "./noteslist.css";
 import { useLiveQuery } from "dexie-react-hooks";
 import { Link } from "react-router-dom";
 import { db } from "../db";
@@ -14,19 +15,23 @@ const NotesList = () => {
     const notes = useLiveQuery(() => db.notes.toArray());
 
     return (
-        <div>
+        <div className="notes-list">
             {
-                notes?.map(note => <p key={note.id}>
-                {note.datetime}: {note.book}, {note.chapter}:{note.verse}
-                {note.remark}
-                    <span className="button-area" onClick={() => deleteNote(note.id)}> 
-                        Delete
-                    </span>
+                notes?.map(note => 
+                    <div className="notes-item" key={note.id}>
+                            <div className="note-content">
+                                {note.datetime}: {note.book}, {note.chapter}:{note.verse}
+                                {note.remark}
+                            </div>
+                            <div className="button-area" onClick={() => deleteNote(note.id)}> 
+                                Delete
+                            </div>
 
-                    <Link className="button-area" to={`/note/${note.id}`}>
-                        View
-                    </Link>
-                </p>)
+                            <Link className="button-area" to={`/note/${note.id}`}>
+                                View
+                            </Link>
+                    </div>
+                )
             }
         </div>
       );

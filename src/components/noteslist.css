@@ -1,0 +1,63 @@
+* {
+  font-family: sans-serif;
+}
+
+.notes-list {
+  width: 375px;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+}
+
+.notes-item {
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  border: 1px solid white;
+  scrollbar-width: none;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.notes-item::-webkit-scrollbar {
+  display: none;
+}
+
+.notes-item > * {
+  scroll-snap-align: start;
+  font-size: 2rem;
+}
+
+.button-area {
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.button-area:first-of-type {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 30%;
+          flex: 1 0 30%;
+  background-color: orange;
+}
+
+.note-content {
+  -webkit-box-flex: 2;
+      -ms-flex: 2 0 100%;
+          flex: 2 0 100%;
+  color: white;
+  background-color: slategrey;
+  padding: 0.5rem;
+}
+
+.button-area:last-of-type {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 30%;
+          flex: 1 0 30%;
+  background-color: darkred;
+}
+/*# sourceMappingURL=noteslist.css.map */
