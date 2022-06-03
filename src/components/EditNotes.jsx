@@ -27,7 +27,6 @@ const EditNotes = () => {
     }
 
     const updateNote = () => {
-        console.log("Remark Value: ", remarkValue);
         db.notes.update(Number(id), {remark: remarkValue}).then(function (updated) {
             if (updated)
               console.log (id, "Remark successfully updated");
