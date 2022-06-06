@@ -12,23 +12,41 @@ import {
   } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
 
+import {
+    ActionContent,
+    Avatar,
+    ItemColumn,
+    ItemColumnCentered,
+    ItemContent,
+    ItemInfoLine,
+    ItemNameLine,
+    ItemRow,
+  } from '../styledComponents';
+//   import { colors } from '../data.js';
+
+import './NotesList.css';
+
 const NotesList = () => {
 
-    const leadingActions = () => (
+    const leadingActions = (note) => (
         <LeadingActions>
           <SwipeAction onClick={() => console.info('swipe action triggered')}>
-            View
+            <Link className="button-area" to={`/note/${note.id}`}>
+                View
+            </Link> 
           </SwipeAction>
         </LeadingActions>
     );
       
-    const trailingActions = () => (
+    const trailingActions = (note_id) => (
         <TrailingActions>
             <SwipeAction
             destructive={true}
-            onClick={() => console.info('swipe action triggered')}
+            onClick={() => deleteNote(note_id)}
             >
+            <p className="button-area">
                 Delete
+            </p>   
             </SwipeAction>
         </TrailingActions>
     );
@@ -43,38 +61,39 @@ const NotesList = () => {
     const notes = useLiveQuery(() => db.notes.toArray());
 
     return (
-        <SwipeableList
-            fullSwipe={false}
-            type={ListType.IOS}
-        >
-            {
-                notes?.map(note => 
-                    <SwipeableListItem 
-                        leadingActions={leadingActions()}
-                        trailingActions={trailingActions()}
-                        key={note.id}
-                    >
-         
-                        <i>
-                        {note.datetime}: {note.book}, {note.chapter}:{note.verse}
-                        </i>
-                        <Link to={`/note/${note.id}`}>
-                            {note.remark}
-                        </Link>
-    
-                        {/* 
-                            <div className="button-area" onClick={() => deleteNote(note.id)}> 
-                                Delete
-                            </div>
-
-                            <Link className="button-area" to={`/note/${note.id}`}>
-                                View
-                            </Link> 
-                        */}
-                    </SwipeableListItem>
-                )
-            }
-        </SwipeableList>
+        <div className="page-content">
+        <h1 className="page-content__title">react-swipeable-list example</h1>
+        <h2 className="page-content__subtitle">List of notes</h2>
+            <div className="basic-swipeable-list__container">
+            <SwipeableList
+                style={{ backgroundColor: '#555878' }}
+                fullSwipe={false}
+                threshold={0.5}
+                type={ListType.IOS}
+            >
+                {
+                    notes?.map(note => 
+                        <SwipeableListItem 
+                            leadingActions={leadingActions(note)}
+                            trailingActions={trailingActions(note.id)}
+                            key={note.id}
+                        >
+                        <ItemContent>
+                            <ItemRow>
+                            <p>{note.remark}</p>
+                            <ItemColumn>
+                                <ItemNameLine>{note.book} {note.chapter},{note.verse}</ItemNameLine>
+                                <ItemInfoLine>{note.datetime}</ItemInfoLine>
+                            </ItemColumn>  
+                            </ItemRow>
+                        </ItemContent>
+                           
+                        </SwipeableListItem>
+                    )
+                }
+            </SwipeableList>
+            </div>
+        </div>
       );
 }
  
