@@ -12,18 +12,6 @@ import {
   } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
 
-import {
-    ActionContent,
-    Avatar,
-    ItemColumn,
-    ItemColumnCentered,
-    ItemContent,
-    ItemInfoLine,
-    ItemNameLine,
-    ItemRow,
-  } from '../styledComponents';
-//   import { colors } from '../data.js';
-
 import './NotesList.css';
 
 const NotesList = () => {
@@ -44,9 +32,9 @@ const NotesList = () => {
             destructive={true}
             onClick={() => deleteNote(note_id)}
             >
-            <p className="button-area">
+            <div className="button-area-delete">
                 Delete
-            </p>   
+            </div>   
             </SwipeAction>
         </TrailingActions>
     );
@@ -62,8 +50,8 @@ const NotesList = () => {
 
     return (
         <div className="page-content">
-        <h1 className="page-content__title">react-swipeable-list example</h1>
-        <h2 className="page-content__subtitle">List of notes</h2>
+            <h1 className="page-content__title">react-swipeable-list example</h1>
+            <h2 className="page-content__subtitle">List of notes</h2>
             <div className="basic-swipeable-list__container">
             <SwipeableList
                 style={{ backgroundColor: '#555878' }}
@@ -78,15 +66,11 @@ const NotesList = () => {
                             trailingActions={trailingActions(note.id)}
                             key={note.id}
                         >
-                        <ItemContent>
-                            <ItemRow>
-                            <p>{note.remark}</p>
-                            <ItemColumn>
-                                <ItemNameLine>{note.book} {note.chapter},{note.verse}</ItemNameLine>
-                                <ItemInfoLine>{note.datetime}</ItemInfoLine>
-                            </ItemColumn>  
-                            </ItemRow>
-                        </ItemContent>
+                        <div className="item-content">
+                            <div className="item-remark">{note.remark}</div>
+                            <div className="item-reference">{note.book} {note.chapter},{note.verse}</div>
+                            <div className="item-datetime">{note.datetime}</div>
+                        </div>
                            
                         </SwipeableListItem>
                     )

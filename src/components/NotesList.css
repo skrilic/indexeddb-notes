@@ -6,10 +6,68 @@
     outline-width: 1px 0;
   }
   
-  .icon {
+.icon {
     fill: white;
     width: 32px;
     height: 32px;
     align-self: center;
   }
-  
+
+.item-content {
+    color: aliceblue;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    width: 100%;
+    background-color: #555878;
+    border-style: solid;
+    border-color: #393a52;
+    border-width: 12px;
+    border-top-width: 6px;
+    border-bottom-width: 6px;
+    color: #eee;
+  }
+
+.item-remark {
+    width: 50%;
+    align-items: flex-start;
+  }
+
+.item-reference {
+  width: 20%;
+  align-items: flex-end;
+}
+
+.item-datetime {
+  width: 30%;
+  align-items: flex-end;
+}
+
+.button-area {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+  margin: 0rem 0 0rem 0;
+  background: lightgrey;
+  cursor: pointer;
+}
+
+.button-area-delete {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+  margin: 0rem 0 0rem 0;
+  background: red;
+  cursor: pointer;
+}
+
+.button-area:hover {
+  background: gray;
+  color: aliceblue;
+}
+
+.button-area-delete:hover {
+  background: gray;
+  color: aliceblue;
+}
