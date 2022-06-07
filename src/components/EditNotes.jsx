@@ -43,8 +43,8 @@ const EditNotes = () => {
     }
 
     return ( 
-        <div style={{ "alignItems": "center" }}>
-        <h4>Details</h4>
+        <div className="note-details">
+            <h4>Details</h4>
             <small>{theNote.datetime}</small>
             <br/>
             <textarea 
@@ -54,7 +54,14 @@ const EditNotes = () => {
              />
             <br/>
             <span><b>{theNote.book}</b> <i>{theNote.chapter}:{theNote.verse}</i></span>
-            <div className="button-area" onClick={updateNote}>Update</div>
+
+            <div style={{
+                 "width": "10rem", 
+                 "height": "2rem", 
+                 }}>
+                <div className="button-area" onClick={updateNote}>Update</div>
+            </div>
+            
         </div>
      );
 }

@@ -58,7 +58,7 @@ const NotesList = () => {
             <h1 className="page-content__title">react-swipeable-list example</h1>
             <h2 className="page-content__subtitle">List of notes</h2>
             <div style={{ "width": "10rem", "height": "2rem" }}>
-                <div className="button-area"><a href="/note/add">Add</a></div>
+                <Link className="button-area" to="/note/add">Add note</Link>
             </div>
             <div className="basic-swipeable-list__container">
             <SwipeableList

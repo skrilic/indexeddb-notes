@@ -34,7 +34,7 @@ const AddBookMarkForm = () => {
 
 
     return ( 
-        <div>
+        <div className="note-details">
             <h2>BookMark</h2>
             <p>
             {status}
