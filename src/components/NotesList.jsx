@@ -40,10 +40,12 @@ const NotesList = () => {
     );
 
     function deleteNote(note_id) {
-        db.notes
-        .delete(note_id).then(function (deleteCount) {
-            console.log("Deleted " + deleteCount + "objects");
-        });
+        if (window.confirm("Delete note?")) {
+            db.notes
+                .delete(note_id).then(function (deleteCount) {
+                console.log("Deleted " + deleteCount + "objects");
+            });
+        }
     }
 
     const notes = useLiveQuery(() => db.notes.toArray());

@@ -29,9 +29,16 @@ const EditNotes = () => {
     const updateNote = () => {
         db.notes.update(Number(id), {remark: remarkValue}).then(function (updated) {
             if (updated)
-              console.log (id, "Remark successfully updated");
-            else
-              console.log ("Nothing was updated - there were no remark with primary key: ", id);
+                if (window.confirm("Remark successfully updated")) {
+                    window.open("/notes", "Thanks for Visiting!");
+                }
+                else {
+                    window.alert("Update canceled!");
+                }
+            else {
+                window.alert("Nothing was updated - there were no remark with primary key: ", id);
+                // console.log ("Nothing was updated - there were no remark with primary key: ", id);
+            }
           });
     }
 
