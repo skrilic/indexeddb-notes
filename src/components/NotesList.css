@@ -47,6 +47,7 @@
 .button-area {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0.2rem;
   margin: 0rem 0 0rem 0;
   background: lightgrey;
@@ -56,6 +57,7 @@
 .button-area-delete {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0.2rem;
   margin: 0rem 0 0rem 0;
   background: red;

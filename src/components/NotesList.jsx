@@ -43,8 +43,11 @@ const NotesList = () => {
         if (window.confirm("Delete note?")) {
             db.notes
                 .delete(note_id).then(function (deleteCount) {
-                console.log("Deleted " + deleteCount + "objects");
+                    window.alert("Deleted " + deleteCount + " note");
             });
+        }
+        else {
+            window.open("/notes", "List of notes");
         }
     }
 
@@ -54,6 +57,9 @@ const NotesList = () => {
         <div className="page-content">
             <h1 className="page-content__title">react-swipeable-list example</h1>
             <h2 className="page-content__subtitle">List of notes</h2>
+            <div style={{ "width": "10rem", "height": "2rem" }}>
+                <div className="button-area"><a href="/note/add">Add</a></div>
+            </div>
             <div className="basic-swipeable-list__container">
             <SwipeableList
                 style={{ backgroundColor: '#555878' }}
