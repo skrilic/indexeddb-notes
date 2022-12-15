@@ -1,5 +1,5 @@
 import { useLiveQuery } from "dexie-react-hooks";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { db } from "../db";
 
 import {
@@ -14,7 +14,13 @@ import 'react-swipeable-list/dist/styles.css';
 
 import './NotesList.css';
 
+
 const NotesList = () => {
+
+    const navigate = useNavigate();
+    const redirectToHome = () => {
+        navigate("/");
+    }
 
     const leadingActions = (note) => (
         <LeadingActions>
@@ -42,12 +48,13 @@ const NotesList = () => {
     function deleteNote(note_id) {
         if (window.confirm("Delete note?")) {
             db.notes
-                .delete(note_id).then(function (deleteCount) {
-                    window.alert("Deleted " + deleteCount + " note");
-            });
+                .delete(note_id);
+                // .delete(note_id).then(function (deleteCount) {
+                //     window.alert("Deleted " + deleteCount + " note");
+                // });
         }
         else {
-            window.open("/notes", "List of notes");
+            redirectToHome();
         }
     }
 

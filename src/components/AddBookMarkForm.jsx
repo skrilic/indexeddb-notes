@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { db } from "../db";
 
 const AddBookMarkForm = () => {
@@ -7,9 +8,15 @@ const AddBookMarkForm = () => {
     const [verse, setVerse] = useState("");
     const [remark, setRemark] = useState("");
     const [status, setStatus] = useState("");
+    
+    const navigate = useNavigate();
+    const redirectToHome = () => {
+            //Redirect to the home page
+            navigate("/");
+    };
 
     async function addBookMark() {
-
+        
         let datetime = (new Date()).toLocaleString();
         try {
             const id = await db.notes.add({
@@ -28,8 +35,9 @@ const AddBookMarkForm = () => {
             setRemark("");
         } catch (error) {
             setStatus(`Failed to add ${book} ${chapter},${verse}: Error ${error}`);
-
         }
+
+        redirectToHome();
     }
 
 
