@@ -1,6 +1,7 @@
 .basic-swipeable-list__container {
     width: 100%;
-    margin: 16px 0;
+    margin: 2rem;
+    display: flex;
     outline-color: gray;
     outline-style: solid;
     outline-width: 1px 0;
@@ -18,12 +19,13 @@
     height: 64px;
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
+    /* justify-content: space-around; */
     width: 100%;
     background-color: #555878;
     border-style: solid;
     border-color: #393a52;
-    border-width: 12px;
+    border-left-width: 10px;
+    border-right-width: 10px;
     border-top-width: 6px;
     border-bottom-width: 6px;
     color: #eee;
@@ -31,17 +33,17 @@
 
 .item-remark {
     width: 50%;
-    align-items: flex-start;
+    /* align-items: flex-start; */
   }
 
 .item-reference {
   width: 20%;
-  align-items: flex-end;
+  /* align-items: flex-end; */
 }
 
 .item-datetime {
   width: 30%;
-  align-items: flex-end;
+  /* align-items: flex-end; */
 }
 
 .button-area {

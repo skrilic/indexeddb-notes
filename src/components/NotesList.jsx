@@ -14,8 +14,8 @@ import 'react-swipeable-list/dist/styles.css';
 
 import './NotesList.css';
 
-import { Reorder } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
+
 
 
 const NotesList = () => {
@@ -29,7 +29,7 @@ const NotesList = () => {
         <LeadingActions>
           <SwipeAction onClick={() => console.info('swipe action triggered')}>
             <Link className="button-area" to={`/note/${note.id}`}>
-                View
+                Update
             </Link> 
           </SwipeAction>
         </LeadingActions>
@@ -49,6 +49,7 @@ const NotesList = () => {
     );
 
     function deleteNote(note_id) {
+        // TODO: Pogledati u "Biblija-hrv" korištenje modal umjesto window.*
         if (window.confirm("Delete note?")) {
             db.notes
                 .delete(note_id);
@@ -63,8 +64,6 @@ const NotesList = () => {
 
     
     const getNotes = useLiveQuery(() => db.notes.toArray());
-    const [items, setItems] = useState([getNotes] || []);
-    console.log(getNotes)
     
     return (
         <div className="page-content">
@@ -75,7 +74,11 @@ const NotesList = () => {
             </div>
             <div className="basic-swipeable-list__container">
             <SwipeableList
-                style={{ backgroundColor: '#555878' }}
+                style={{ 
+                    backgroundColor: '#555878', 
+                    display: "flex", 
+                    flexDirection: "column"
+                }}
                 fullSwipe={false}
                 threshold={0.5}
                 type={ListType.IOS}
@@ -87,25 +90,15 @@ const NotesList = () => {
                             trailingActions={trailingActions(note.id)}
                             key={note.id}
                         >
-                        <div className="item-content">
-                            <div className="item-remark">{note.remark}</div>
-                            <div className="item-reference">{note.book} {note.chapter},{note.verse}</div>
-                            <div className="item-datetime">{note.datetime}</div>
-                        </div>
-                           
+                            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} className="item-content">
+                                <div className="item-remark">{note.remark}</div>
+                                <div className="item-reference">{note.book} {note.chapter},{note.verse}</div>
+                                <div className="item-datetime">{note.datetime}</div>
+                            </motion.div>
                         </SwipeableListItem>
                     )
                 }
             </SwipeableList>
-            
-            <br></br>
-            <Reorder.Group axis="y" values={items} onReorder={setItems}>
-            {items?.map((item) => (
-                <Reorder.Item key={item.id} value={item.book}>
-                    {item.book}
-                </Reorder.Item>
-            ))}
-            </Reorder.Group>
             </div>
         </div>
       );
