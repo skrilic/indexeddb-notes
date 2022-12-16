@@ -14,6 +14,9 @@ import 'react-swipeable-list/dist/styles.css';
 
 import './NotesList.css';
 
+import { Reorder } from "framer-motion";
+import { useState } from "react";
+
 
 const NotesList = () => {
 
@@ -58,8 +61,11 @@ const NotesList = () => {
         }
     }
 
-    const notes = useLiveQuery(() => db.notes.toArray());
-
+    
+    const getNotes = useLiveQuery(() => db.notes.toArray());
+    const [items, setItems] = useState([getNotes] || []);
+    console.log(getNotes)
+    
     return (
         <div className="page-content">
             <h1 className="page-content__title">react-swipeable-list example</h1>
@@ -75,7 +81,7 @@ const NotesList = () => {
                 type={ListType.IOS}
             >
                 {
-                    notes?.map(note => 
+                    getNotes?.map(note => 
                         <SwipeableListItem 
                             leadingActions={leadingActions(note)}
                             trailingActions={trailingActions(note.id)}
@@ -91,6 +97,15 @@ const NotesList = () => {
                     )
                 }
             </SwipeableList>
+            
+            <br></br>
+            <Reorder.Group axis="y" values={items} onReorder={setItems}>
+            {items?.map((item) => (
+                <Reorder.Item key={item.id} value={item.book}>
+                    {item.book}
+                </Reorder.Item>
+            ))}
+            </Reorder.Group>
             </div>
         </div>
       );
