@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../db";
@@ -13,6 +14,7 @@ import {
 import 'react-swipeable-list/dist/styles.css';
 
 import './NotesList.css';
+import FooterBar from "./FooterBar";
 
 import { motion } from "framer-motion";
 
@@ -21,6 +23,7 @@ import { motion } from "framer-motion";
 const NotesList = () => {
 
     const navigate = useNavigate();
+
     const redirectToHome = () => {
         navigate("/");
     }
@@ -37,33 +40,55 @@ const NotesList = () => {
       
     const trailingActions = (note_id) => (
         <TrailingActions>
-            <SwipeAction
-            destructive={true}
-            onClick={() => deleteNote(note_id)}
-            >
-            <div className="button-area-delete">
-                Delete
-            </div>   
+            <SwipeAction onClick={() => console.info('swipe action triggered')}>
+                <Link className="button-area" to={`/note/${note_id}`}>
+                    Update
+                </Link> 
             </SwipeAction>
+            <SwipeAction
+                destructive={true}
+                onClick={() => deleteNote(note_id)}
+                >
+                <div className="button-area-delete">
+                    Delete
+                </div>   
+            </SwipeAction>
+            
         </TrailingActions>
     );
 
     function deleteNote(note_id) {
-        // TODO: Pogledati u "Biblija-hrv" korištenje modal umjesto window.*
         if (window.confirm("Delete note?")) {
             db.notes
-                .delete(note_id);
-                // .delete(note_id).then(function (deleteCount) {
-                //     window.alert("Deleted " + deleteCount + " note");
-                // });
+                .delete(note_id).then(function (deleteCount) {
+                    window.alert("Deleted " + deleteCount + " note");
+            });
         }
         else {
-            redirectToHome();
+            window.open("/", "_self");
         }
     }
-
     
     const getNotes = useLiveQuery(() => db.notes.toArray());
+    
+    const [navbarVisible, setNavbarVisible] = useState(true);
+    useEffect(() => {
+        const handleScroll = event => {
+            if (window.scrollY < 110) {
+                setNavbarVisible(true);
+            } else if (window.scrollY < 140) {
+                setNavbarVisible((prevVal) => setNavbarVisible(prevVal))
+            } else {
+                setNavbarVisible(false);
+            }
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+    
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
     
     return (
         <div className="page-content">
@@ -100,6 +125,7 @@ const NotesList = () => {
                 }
             </SwipeableList>
             </div>
+            <FooterBar visible={navbarVisible} bookmarkListIsOpened={true} />
         </div>
       );
 }

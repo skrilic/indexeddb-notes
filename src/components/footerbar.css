@@ -1,0 +1,35 @@
+.footerbar {
+    overflow: hidden;
+    z-index: 5;
+    min-height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    /* background: var(--navbar-background); */
+    /* background: rgba(248, 249, 250, 1.0); */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer-item {
+    background: transparent;
+    box-sizing: border-box;
+    color: inherit;
+    display: inline-block;
+    margin: 0.5rem 1rem 0.5rem 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.footerbar svg {
+    margin: 1.5rem 1rem 0.5rem 0;
+    vertical-align: middle;
+}
+
+.footerbar svg:hover {
+    background: #ddd;
+    /* mix-blend-mode: color; */
+    color: black;
+}
