@@ -1,6 +1,4 @@
-import "./settingpanel.css";
 import { Link } from "react-router-dom";
-
 import { InfoIcon } from "./AppIcons";
 
 function SettingPanel(props) {
@@ -10,9 +8,8 @@ function SettingPanel(props) {
     }
 
     return (
-        <>
-          <div className="settings" onSubmit={handleSubmit}>
-            <div className="settings-item">
+          <div className="flex flex-col m-auto text-2xl" onSubmit={handleSubmit}>
+            <div className="flex flex-row w-full m-4 justify-between">
               <InfoIcon />
               <label style={{ "marginTop": "2em" }}>
                 <Link style={{ 
@@ -23,8 +20,7 @@ function SettingPanel(props) {
                 </Link>
               </label>
             </div>
-            </div>
-        </>
+          </div>
     )
 }
 

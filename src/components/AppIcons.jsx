@@ -1,4 +1,3 @@
-import "./appicons.css";
 import React, { useState, useEffect } from "react";
 import { AiFillHome } from "react-icons/ai";
 import { AiOutlineUnorderedList } from "react-icons/ai";
@@ -7,12 +6,7 @@ import { AiOutlineRight } from "react-icons/ai";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineSetting } from "react-icons/ai";
-import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineFile } from "react-icons/ai";
-import { FaRegEdit } from "react-icons/fa";
-import { FaRegBookmark } from "react-icons/fa";
-import { FaChevronRight } from "react-icons/fa";
-import { AiFillDelete } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 
 import SettingPanel from "./SettingPanel";
@@ -31,6 +25,12 @@ const StyledModal = Modal.styled`
     background: ${(props) => props.theme.background};
     opacity: ${(props) => props.theme.opacity};
     transition : all 0.3s ease-in-out;`;
+
+const iconLink = "flex justify-between";
+const iconLabel = "text-gray-700 inline-block align-middle";
+const iconNeutral = "text-gray-200 cursor-pointer w-7 h-8 inline-block align-middle";
+const iconClicked = "text-gray-300 bg-gray-800 rounded-lg cursor-pointer w-7 h-8";
+const iconDisabled = "text-gray-100 w-7 h-8 cursor-pointer inline-block align-middle";
 
 function SettingsModalButton(props) {
     const[bgColor, setBgColor] = useState(window.getComputedStyle(document.body, "").backgroundColor);
@@ -54,9 +54,9 @@ function SettingsModalButton(props) {
     
     return (
         <>
-            <div onClick={toggleModal} className="icon-link">
-                <AiOutlineSetting className="icon" />
-                <small className="icon-label" style={{ "fontSize": "1.25em" }}>
+            <div onClick={toggleModal} className={iconLink}>
+                <AiOutlineSetting className={iconNeutral} />
+                <small className={iconLabel} style={{ "fontSize": "1.25em" }}>
                     {props.label}
                 </small>
             </div>
@@ -107,18 +107,28 @@ export const HomeIcon = (props) => {
             { 
             isDisabled ? 
             <>
-                <AiFillHome className="icon-disabled" />
-                <small className="icon-label">
+                <AiFillHome className={iconDisabled} />
+                <small className={iconLabel}>
                     {props.label}
                 </small>
             </> :
             <div onClick={() => {
                 setIsClicked(prevState => !prevState, handleButton());
             }}>
-                <AiFillHome className={ isClicked ? "icon-clicked" : "icon" } />
-                <small className="icon-label">
-                    {props.label}
-                </small>
+                {isClicked ?
+                    <>
+                        <AiFillHome className={iconClicked} />
+                        <small className={iconLabel}>
+                            {props.label}
+                        </small> 
+                    </>:
+                    <>
+                        <AiFillHome className={iconNeutral} />
+                        <small className={iconLabel}>
+                            {props.label}
+                        </small> 
+                    </>
+                }   
             </div>
             }
         </>      
@@ -148,18 +158,30 @@ export const TocIcon = (props) => {
             { 
                 isDisabled ? 
                 <>
-                    <AiOutlineUnorderedList className="icon-disabled" />
-                    <small className="icon-label">
+                    <AiOutlineUnorderedList className={iconDisabled} />
+                    <small className={iconLabel}>
                         {props.label}
                     </small>
                 </> :
                 <div onClick={() => {
                     setIsClicked(prevState => !prevState, handleButton());
                 }}>
-                    <AiOutlineUnorderedList className={ isClicked ? "icon-clicked" : "icon"} />
-                    <small className="icon-label">
-                        {props.label}
-                    </small>
+                    {
+                        isClicked ?
+                        <>
+                            <AiOutlineUnorderedList className={iconClicked} />
+                            <small className={iconLabel}>
+                                {props.label}
+                            </small>
+                        </>:
+                        <>
+                            <AiOutlineUnorderedList className={iconNeutral} />
+                            <small className={iconLabel}>
+                                {props.label}
+                            </small>
+                        </>
+                    }
+                    
                 </div>
             }
         </>
@@ -168,9 +190,9 @@ export const TocIcon = (props) => {
 
 export const InfoIcon = (props) => {
     return (
-        <Link className="icon-link" to="/about">
-           <AiOutlineInfoCircle className="icon" />
-            <small className="icon-label">
+        <Link className={iconLink} to="/about">
+           <AiOutlineInfoCircle className={iconNeutral} />
+            <small className={iconLabel}>
                 {props.label}
             </small>
         </Link>
@@ -180,8 +202,8 @@ export const InfoIcon = (props) => {
 export const SearchExecIcon = (props) => {
     return (
         <div>
-           <AiOutlineSearch className="icon" />
-            <small className="icon-label">
+           <AiOutlineSearch className={iconNeutral} />
+            <small className={iconLabel}>
                 {props.label}
             </small>
         </div>
@@ -209,8 +231,18 @@ export const SearchIcon = (props) => {
         <div onClick={() => {
                 setIsClicked(prevState => !prevState, handleButton());
             }}>
-            <AiOutlineSearch className={ isClicked ? "icon-clicked" : "icon" } />
-            <small className="icon-label">{props.label}</small>
+                {
+                    isClicked ?
+                    <>
+                        <AiOutlineSearch className={iconClicked} />
+                        <small className={iconLabel}>{props.label}</small>
+                    </> :
+                    <>
+                        <AiOutlineSearch className={iconNeutral} />
+                        <small className={iconLabel}>{props.label}</small>
+                    </>
+                }
+            
         </div>
     )
 }
@@ -267,71 +299,21 @@ export const BookmarkListIcon = (props) => {
         <div onClick={() => {
             setIsClicked(prevState => !prevState, handleButton());
         }}>
-                <AiOutlineFile className={ isClicked ? "icon-clicked" : "icon" } />
-                <small className="icon-label">
-                       {props.label}
-                </small>
-            </div>
-    )
-}
-
-export const EditIcon = (props) => {
-    const isDisabled = props.disabled;
-    let iconColor = "";
-    if (isDisabled) {
-        iconColor = "#bdbbbb";
-    }
-    return <FaRegEdit className="icon"
-        style={{ color: iconColor }}
-    />
-}
-
-export const BookmarkIcon = (props) => {
-    const isDisabled = props.disabled;
-    let iconColor = "";
-    if (isDisabled) {
-        iconColor = "#bdbbbb";
-    }
-    return <FaRegBookmark className="icon"
-        style={{ color: iconColor, cursor: "pointer" }}
-    />
-}
-
-export const ChevronRightIcon = (props) => {
-    const isDisabled = props.disabled;
-    let iconColor = "";
-    if (isDisabled) {
-        iconColor = "#bdbbbb";
-    }
-    return <FaChevronRight className="icon"
-        style={{ color: iconColor }}
-    />
-}
-
-export const DeleteIcon = (props) => {
-    const isDisabled = props.disabled;
-    let iconColor = "red";
-    if (isDisabled) {
-        iconColor = "#bdbbbb";
-    }
-    return <AiFillDelete className="icon"
-        style={{ color: iconColor, cursor: "pointer" }}
-    />
-}
-
-
-export const CloseIcon = (props) => {
-    const navigate = useNavigate();
-    const { closeAndGoTo } = props;
-    return (
-        <div onClick={ () =>  {
-            if (closeAndGoTo !== null ){
-                navigate(closeAndGoTo);
-            } else {
-                navigate("/toc");
+            {
+                isClicked ?
+                <>
+                    <AiOutlineFile className={iconClicked} />
+                    <small className={iconLabel}>
+                        {props.label}
+                    </small>
+                </> :
+                <>
+                    <AiOutlineFile className={iconNeutral} />
+                    <small className={iconLabel}>
+                        {props.label}
+                    </small>
+                </>
             }
-        } }>
-            <AiOutlineClose className="close-icon" />
-        </div>
+            </div>
     )
 }
