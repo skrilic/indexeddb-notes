@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AiFillHome } from "react-icons/ai";
 import { AiOutlineUnorderedList } from "react-icons/ai";
-import { AiOutlineLeft } from "react-icons/ai";
-import { AiOutlineRight } from "react-icons/ai";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineSetting } from "react-icons/ai";
@@ -29,11 +27,11 @@ const StyledModal = Modal.styled`
 const iconLink = "flex justify-between";
 const iconLabel = "text-gray-700 inline-block align-middle";
 const iconNeutral = "text-gray-200 cursor-pointer w-7 h-8 inline-block align-middle";
-const iconClicked = "text-gray-300 bg-gray-800 rounded-lg cursor-pointer w-7 h-8";
+const iconClicked = "text-gray-300 cursor-pointer w-7 h-8 inline-block bg-red-800 align-middle rounded-lg";
 const iconDisabled = "text-gray-100 w-7 h-8 cursor-pointer inline-block align-middle";
 
 function SettingsModalButton(props) {
-    const[bgColor, setBgColor] = useState(window.getComputedStyle(document.body, "").backgroundColor);
+    const [bgColor, setBgColor] = useState(window.getComputedStyle(document.body, "").backgroundColor);
     const [isOpen, setIsOpen] = useState(false);
     const [isUpdated, setIsUpdated] = useState(false);
 
@@ -255,28 +253,6 @@ export const SettingsIcon = (props) => {
     )
 }
 
-
-export const ArrowLeftIcon = (props) => {
-    const isDisabled = props.disabled;
-    let iconColor = "";
-    if (isDisabled) {
-        iconColor = "#bdbbbb";
-    }
-    return <AiOutlineLeft className="arrow-icon"
-        style={{ color: iconColor }}
-    />
-}
-
-export const ArrowRightIcon = (props) => {
-    const isDisabled = props.disabled;
-    let iconColor = "";
-    if (isDisabled) {
-        iconColor = "#bdbbbb";
-    }
-    return <AiOutlineRight className="arrow-icon"
-        style={{ color: iconColor }}
-    />
-}
 
 export const BookmarkListIcon = (props) => {
     const navigate = useNavigate();

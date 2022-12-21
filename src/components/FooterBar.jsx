@@ -16,13 +16,15 @@ const FooterBar = (props) => {
         <div className="
             flex 
             w-full
+            overflow-hidden
             z-50
             bg-neutral-500
             justify-around 
             align-middle 
             bottom-0
             left-0
-            fixed"
+            fixed
+            "
 
             style={visible ? { "visibility": "visible" } : { "visibility": "collapse" }}
         >

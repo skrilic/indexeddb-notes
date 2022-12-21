@@ -3,17 +3,6 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../db";
 
-import {
-    LeadingActions,
-    SwipeableList,
-    SwipeableListItem,
-    SwipeAction,
-    TrailingActions,
-    Type as ListType,
-  } from 'react-swipeable-list';
-import 'react-swipeable-list/dist/styles.css';
-
-import './NotesList.css';
 import FooterBar from "./FooterBar";
 
 import { motion } from "framer-motion";
@@ -28,34 +17,6 @@ const NotesList = () => {
         navigate("/");
     }
 
-    const leadingActions = (note) => (
-        <LeadingActions>
-          <SwipeAction onClick={() => console.info('swipe action triggered')}>
-            <Link className="button-area" to={`/note/${note.id}`}>
-                Update
-            </Link> 
-          </SwipeAction>
-        </LeadingActions>
-    );
-      
-    const trailingActions = (note_id) => (
-        <TrailingActions>
-            <SwipeAction onClick={() => console.info('swipe action triggered')}>
-                <Link className="button-area" to={`/note/${note_id}`}>
-                    Update
-                </Link> 
-            </SwipeAction>
-            <SwipeAction
-                destructive={true}
-                onClick={() => deleteNote(note_id)}
-                >
-                <div className="button-area-delete">
-                    Delete
-                </div>   
-            </SwipeAction>
-            
-        </TrailingActions>
-    );
 
     function deleteNote(note_id) {
         if (window.confirm("Delete note?")) {
@@ -91,40 +52,30 @@ const NotesList = () => {
       }, []);
     
     return (
-        <div className="page-content">
-            <h1 className="page-content__title">react-swipeable-list example</h1>
-            <h2 className="page-content__subtitle">List of notes</h2>
-            <div style={{ "width": "10rem", "height": "2rem" }}>
-                <Link className="button-area" to="/note/add">Add note</Link>
+        <div className="flex flex-col justify-center">
+            <h2 className="text-base">List of notes</h2>
+            <div className="bg-slate-500 border-x-slate-800 m-2 w-fit">
+                <Link to="/note/add">Add note</Link>
             </div>
-            <div className="basic-swipeable-list__container">
-            <SwipeableList
-                style={{ 
-                    backgroundColor: '#555878', 
-                    display: "flex", 
-                    flexDirection: "column"
-                }}
-                fullSwipe={false}
-                threshold={0.5}
-                type={ListType.IOS}
-            >
-                {
-                    getNotes?.map(note => 
-                        <SwipeableListItem 
-                            leadingActions={leadingActions(note)}
-                            trailingActions={trailingActions(note.id)}
-                            key={note.id}
-                        >
-                            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} className="item-content">
-                                <div className="item-remark">{note.remark}</div>
-                                <div className="item-reference">{note.book} {note.chapter},{note.verse}</div>
-                                <div className="item-datetime">{note.datetime}</div>
-                            </motion.div>
-                        </SwipeableListItem>
-                    )
-                }
-            </SwipeableList>
-            </div>
+
+            <ul>
+            {
+                getNotes?.map(note => 
+                        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} className="flex flex-row justify-evenly"  key={note.id}>
+                            <div className="bg-slate-500 w-1/2">{note.remark}</div>
+                            <div className="bg-slate-300 w-1/4">{note.book} {note.chapter},{note.verse}</div>
+                            <div className="bg-slate-500 w-1/4">{note.datetime}</div>
+                            <div className="w-fit p-2">
+                                <Link  to={`note/${note.id}`}>Update</Link>  
+                            </div>
+                            <div className="w-fit p-2 cursor-pointer" onClick={() => deleteNote(note.id)}>
+                                Delete
+                            </div>
+                        </motion.div>
+                )
+            }
+            </ul>
+
             <FooterBar visible={navbarVisible} bookmarkListIsOpened={true} />
         </div>
       );

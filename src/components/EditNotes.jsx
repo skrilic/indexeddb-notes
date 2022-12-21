@@ -30,7 +30,7 @@ const EditNotes = () => {
         db.notes.update(Number(id), {remark: remarkValue}).then(function (updated) {
             if (updated)
                 if (window.confirm("Remark successfully updated")) {
-                    window.open("/notes", "Thanks for Visiting!");
+                    window.open("/", "_self");
                 }
                 else {
                     window.alert("Update canceled!");
