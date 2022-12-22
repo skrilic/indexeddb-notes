@@ -61,7 +61,12 @@ const NotesList = () => {
             <ul>
             {
                 getNotes?.map(note => 
-                        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }} className="flex flex-row justify-evenly"  key={note.id}>
+                        <motion.div 
+                        whileHover={{ scale: 1.1 }} 
+                        whileTap={{ scale: 0.8 }} 
+                        className="flex flex-row justify-evenly my-1"  
+                        key={note.id}
+                        >
                             <div className="bg-slate-500 w-1/2">{note.remark}</div>
                             <div className="bg-slate-300 w-1/4">{note.book} {note.chapter},{note.verse}</div>
                             <div className="bg-slate-500 w-1/4">{note.datetime}</div>
@@ -76,7 +81,7 @@ const NotesList = () => {
             }
             </ul>
 
-            <FooterBar visible={navbarVisible} bookmarkListIsOpened={true} />
+            <FooterBar visible={navbarVisible} homeIsOpened={true} />
         </div>
       );
 }

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../db";
+import FooterBar from "./FooterBar";
 
 const EditNotes = () => {
     const { id } = useParams();
@@ -43,25 +44,32 @@ const EditNotes = () => {
     }
 
     return ( 
-        <div className="note-details">
-            <h4>Details</h4>
-            <small>{theNote.datetime}</small>
+        <div className="flex flex-col justify-self-center">
+            <h4 className="m-auto">Details</h4>
+            <small  className="m-auto">{theNote.datetime}</small>
             <br/>
-            <textarea 
+            <textarea className="bg-slate-400"
                 name="remark" 
                 defaultValue={theNote.remark} 
                 onChange={handleChangeRemark}
              />
             <br/>
-            <span><b>{theNote.book}</b> <i>{theNote.chapter}:{theNote.verse}</i></span>
+            <span className="bg-slate-400 m-1"><b>{theNote.book}</b> <i>{theNote.chapter}:{theNote.verse}</i></span>
 
-            <div style={{
-                 "width": "10rem", 
-                 "height": "2rem", 
-                 }}>
-                <div className="button-area" onClick={updateNote}>Update</div>
+            <div className="
+            rounded-sm
+            bg-slate-300
+            hover:bg-slate-500 
+            py-0
+            px-2 
+            m-auto 
+            cursor-pointer
+            "
+            onClick={updateNote}
+            >
+                Update
             </div>
-            
+            <FooterBar visible={true} bookmarkListIsOpened={true} />
         </div>
      );
 }
