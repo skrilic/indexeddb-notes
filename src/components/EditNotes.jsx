@@ -54,7 +54,7 @@ const EditNotes = () => {
                 onChange={handleChangeRemark}
              />
             <br/>
-            <span className="bg-slate-400 m-1"><b>{theNote.book}</b> <i>{theNote.chapter}:{theNote.verse}</i></span>
+            {/* <span className="bg-slate-400 m-1"><b>{theNote.book}</b> <i>{theNote.chapter}:{theNote.verse}</i></span> */}
 
             <div className="
             rounded-sm
