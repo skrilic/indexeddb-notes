@@ -16,6 +16,7 @@ const NotesList = () => {
     }
 
     function deleteNote(note_id) {
+        console.log(`DELETE the note ${note_id} clicked!`)
         if (window.confirm("Delete note?")) {
             db.notes
                 .delete(note_id).then(function (deleteCount) {
@@ -59,7 +60,7 @@ const NotesList = () => {
             <ul>
             {
                 getNotes?.map(note => 
-                    <NoteCard note={note} key={note.id}/>
+                    <NoteCard note={note} handleDelete={() => deleteNote(note.id)} key={note.id}/>
                 )
             }
             </ul>
