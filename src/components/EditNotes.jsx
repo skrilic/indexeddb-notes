@@ -48,7 +48,7 @@ const EditNotes = () => {
             <h4 className="m-auto">Details</h4>
             <small  className="m-auto">{theNote.datetime}</small>
             <br/>
-            <textarea className="bg-slate-400"
+            <textarea className="border-2 mb-1"
                 name="remark" 
                 defaultValue={theNote.remark} 
                 onChange={handleChangeRemark}
@@ -56,15 +56,8 @@ const EditNotes = () => {
             <br/>
             {/* <span className="bg-slate-400 m-1"><b>{theNote.book}</b> <i>{theNote.chapter}:{theNote.verse}</i></span> */}
 
-            <div className="
-            rounded-sm
-            bg-slate-300
-            hover:bg-slate-500 
-            py-0
-            px-2 
-            m-auto 
-            cursor-pointer
-            "
+            <div className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" 
+
             onClick={updateNote}
             >
                 Update

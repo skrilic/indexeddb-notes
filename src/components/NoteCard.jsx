@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { bgcolor } from "@mui/system";
 import CardContent from "./CardContent";
 import UpdateButton from "./UpdateButton";
 import DeleteButton from "./DeleteButton";
@@ -14,10 +13,14 @@ const NoteCard = (props) => {
     return (
     <motion.div 
         whileHover={{ scale: 1.1, opacity: 0.8}} 
-        whileTap={{ scale: 0.8, opacity: 1}} 
-        className="flex flex-row justify-evenly my-1" 
+        whileTap={{ scale: 0.8, opacity: 1}}
+        className="flex flex-row justify-start my-1"
     >
-            <div onClick={() => setHideControl(!hideControl)}>
+            <div 
+                onClick={() => console.log("Expand note to view all the text entry...")}
+                onMouseEnter={() => setHideControl(true)}
+                onMouseLeave={() => setTimeout(() => {setHideControl(false)}, 2000 )}    
+            >
                <CardContent card={card} />
             </div>
             <div className="flex flex-row" style={hideControl ? { "visibility": "visible" } : { "visibility": "collapse" }}>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { db } from "../db";
 
 import FooterBar from "./FooterBar";
@@ -9,11 +10,11 @@ import NoteCard from "./NoteCard";
 
 const NotesList = () => {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const redirectToHome = () => {
-        navigate("/");
-    }
+    // const redirectToHome = () => {
+    //     navigate("/");
+    // }
 
     function deleteNote(note_id) {
         console.log(`DELETE the note ${note_id} clicked!`)
@@ -51,19 +52,21 @@ const NotesList = () => {
       }, []);
     
     return (
-        <div className="flex flex-col justify-center w-full">
-            <h2 className="text-base">List of notes</h2>
-            <div className="bg-slate-500 border-x-slate-800 m-2 w-fit">
-                <Link to="/note/add">Add note</Link>
+        <div className="flex flex-col justify-center w-full mt-4">
+            <div
+                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" 
+            >
+                <Link to="/note/add">Add new note</Link>
             </div>
+            <h2 className="text-base flex justify-center">List of notes</h2>
 
-            <ul>
+            <div className="w-full">
             {
                 getNotes?.map(note => 
                     <NoteCard note={note} handleDelete={() => deleteNote(note.id)} key={note.id}/>
                 )
             }
-            </ul>
+            </div>
 
             <FooterBar visible={navbarVisible} homeIsOpened={true} />
         </div>
