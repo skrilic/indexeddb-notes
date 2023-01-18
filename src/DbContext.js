@@ -11,6 +11,24 @@ export function DbContextProvider({ children }) {
     const tmpGet = useLiveQuery(() => db.notes.toArray());
     const getAllRecords = () => setAllRecords(tmpGet);
 
+    async function addBookMarkAsync(book, chapter, verse, remark) {
+        
+        let datetime = (new Date()).toLocaleString();
+        try {
+            const id = await db.notes.add({
+                book,
+                chapter,
+                verse,
+                datetime,
+                remark
+            });
+
+        } catch (error) {
+            window.alert(`Failed to add ${book} ${chapter},${verse}: Error ${error}`);
+        }
+    }
+
+
     const deleteRecord = (recordId) => {
         db.notes
                 .delete(recordId).then(function (deleteCount) {
@@ -18,12 +36,30 @@ export function DbContextProvider({ children }) {
             });
     }
 
+    const updateRecord = (recordId, recordValue) => {
+        db.notes.update(recordId, {remark: recordValue}).then(function (isUpdated) {
+            if (isUpdated)
+                if (window.confirm("Record successfully updated")) {
+                    window.open("/", "_self");
+                }
+                else {
+                    window.alert("Update canceled!");
+                }
+            else {
+                window.alert("Nothing was updated - there were no remark with primary key: ", recordId);
+                // console.log ("Nothing was updated - there were no remark with primary key: ", id);
+            }
+          });
+    }
+
     return (
         <DbContext.Provider value={
             {
                 allRecords, 
                 getAllRecords,
-                deleteRecord
+                addBookMarkAsync,
+                deleteRecord,
+                updateRecord
             }
         }>
             {children}

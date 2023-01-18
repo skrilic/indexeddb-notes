@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../db";
 import FooterBar from "./FooterBar";
+import DbContext from "../DbContext";
 
 const AddItemForm = () => {
     const [book, setBook] = useState("");
@@ -17,6 +18,9 @@ const AddItemForm = () => {
     };
 
     const [navbarVisible, setNavbarVisible] = useState(true);
+
+
+    const {addBookMarkAsync} = useContext(DbContext);
     
     useEffect(() => {
         const handleScroll = event => {
@@ -36,27 +40,15 @@ const AddItemForm = () => {
         };
       }, []);
 
-    async function addBookMark() {
-        
-        let datetime = (new Date()).toLocaleString();
-        try {
-            const id = await db.notes.add({
-                book,
-                chapter,
-                verse,
-                datetime,
-                remark
-            });
-
-            setStatus(`Bookmark ${book} ${chapter},${verse} successfully added. Got id ${id}`);
+    function addBookMark() {
+        addBookMarkAsync(book, chapter, verse, remark);
+            // setStatus(`Bookmark ${book} ${chapter},${verse} successfully added. Got id ${id}`);
+            setStatus(`Bookmark ${book} ${chapter},${verse} successfully added.`);
             setBook("");
             setChapter("");
             setVerse("");
             // datetime;
             setRemark("");
-        } catch (error) {
-            setStatus(`Failed to add ${book} ${chapter},${verse}: Error ${error}`);
-        }
 
         redirectToHome();
     }
