@@ -7,12 +7,12 @@ function CardContent(props) {
     const [hideControl, setHideControl] = useState(false);
 
     return (
-        <div className='flex flex-auto w-full justify-between'
+        <div className='flex flex-auto w-full justify-between bg-slate-200'
             onMouseEnter={() => setHideControl(true)}
             onMouseLeave={() => setHideControl(false)}
         >
-            <div className="bg-slate-200 p-2 w-full">{card.remark}</div>
-            <div className="bg-slate-200 p-2 w-full text-xs">{card.datetime}</div>
+            <div className="p-2 w-full">{card.remark}</div>
+            <div className="p-2 w-full text-xs">{card.datetime}</div>
 
             <div className="flex flex-row" style={hideControl ? { "visibility": "visible" } : { "visibility": "collapse" }}>
                 <UpdateButton card_id={card.id} />

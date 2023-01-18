@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../db";
 import FooterBar from "./FooterBar";
+import ContentEditor from "./ContentEditor";
 
 const EditNotes = () => {
     const { id } = useParams();
@@ -62,6 +63,9 @@ const EditNotes = () => {
             >
                 Update
             </div>
+
+            <ContentEditor />
+
             <FooterBar visible={true} bookmarkListIsOpened={true} />
         </div>
      );
