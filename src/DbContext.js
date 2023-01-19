@@ -15,7 +15,7 @@ export function DbContextProvider({ children }) {
         
         let datetime = (new Date()).toLocaleString();
         try {
-            const id = await db.notes.add({
+            await db.notes.add({
                 book,
                 chapter,
                 verse,

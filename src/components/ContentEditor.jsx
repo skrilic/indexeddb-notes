@@ -1,22 +1,11 @@
-import React, {useState, useCallback, useContext} from 'react';
+import React from 'react';
 import SimpleMdeReact from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 
-
-const ContentEditor = () =>{
+const ContentEditor = (props) =>{
     return(
-        <SimpleMdeReact />
+        <SimpleMdeReact value={props.value} onChange={props.onChange} />
     )
 }
-
-export const ControlledUsage = (string) => {
-    const [value, setValue] = useState("");
-
-    const onChange = useCallback((string) => {
-      setValue(value);
-    }, [value]);
-  
-    return <SimpleMdeReact value={value} onChange={onChange} />;
-  };
 
 export default ContentEditor;

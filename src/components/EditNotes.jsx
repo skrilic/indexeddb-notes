@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../db";
 import FooterBar from "./FooterBar";
-import ContentEditor, {ControlledUsage} from "./ContentEditor";
+import ContentEditor from "./ContentEditor";
 import DbContext from "../DbContext";
 
 const EditNotes = () => {
@@ -26,12 +26,10 @@ const EditNotes = () => {
         }
         hasDetails.current = true;
     }, [id])
-    
 
-    const handleChangeRemark = (event) => {
-        setRecordValue(event.target.value);
+    const onChangeSimpleMde = (valMde) => {
+        setRecordValue(valMde);
     }
-
 
     return ( 
         <div className="flex flex-col justify-self-center">
@@ -39,27 +37,19 @@ const EditNotes = () => {
             <small  className="m-auto">{theNote.datetime}</small>
             <br/>
 
-            {/* <textarea className="border-2 mb-1"
-                name="remark" 
-                defaultValue={theNote.remark} 
-                onChange={handleChangeRemark}
-             /> */}
-
             <br/>
 
-            <div className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" 
+            <div className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-center text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 onClick={() => updateRecord(Number(id), recordValue)}
             >
                 Update
             </div>
-            
-             <p>{theNote.remark}</p>
-            <ControlledUsage 
-                name="remark" 
-                value={theNote.remark} 
-                onChange={handleChangeRemark}
+
+            <ContentEditor
+             value={theNote.remark}
+             onChange={onChangeSimpleMde}
+             options={{}}
             />
-            {/* <ContentEditor /> */}
 
             <FooterBar visible={true} bookmarkListIsOpened={true} />
         </div>

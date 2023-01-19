@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../db";
 import FooterBar from "./FooterBar";
 import DbContext from "../DbContext";
 
@@ -23,7 +22,7 @@ const AddItemForm = () => {
     const {addBookMarkAsync} = useContext(DbContext);
     
     useEffect(() => {
-        const handleScroll = event => {
+        const handleScroll = () => {
             if (window.scrollY < 110) {
                 setNavbarVisible(true);
             } else if (window.scrollY < 140) {
@@ -95,7 +94,6 @@ const AddItemForm = () => {
                 <p className="mr-1">Note:</p>
                 <textarea
                     className="border"
-                    type="text"
                     value={remark}
                     onChange={ev => setRemark(ev.target.value)}
                 />
