@@ -26,7 +26,7 @@ const EditNotes = () => {
         }
         hasDetails.current = true;
     }, [id])
-
+    
     const onChangeSimpleMde = (valMde) => {
         setRecordValue(valMde);
     }
@@ -44,9 +44,9 @@ const EditNotes = () => {
             >
                 Update
             </div>
-
+            
             <ContentEditor
-             value={theNote.remark}
+                value={theNote.remark}
              onChange={onChangeSimpleMde}
              options={{}}
             />
