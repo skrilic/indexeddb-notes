@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import DeleteButton from './DeleteButton';
 import UpdateButton from './UpdateButton';
 
@@ -11,7 +13,9 @@ function CardContent(props) {
             onMouseEnter={() => setHideControl(true)}
             onMouseLeave={() => setHideControl(false)}
         >
-            <div className="p-2 w-full">{card.remark}</div>
+            <div className="p-2 w-full">
+                <ReactMarkdown children={card.remark} skipHtml={false} remarkPlugins={[remarkGfm]} />
+            </div>
             <div className="p-2 w-full text-xs">{card.datetime}</div>
 
             <div className="flex flex-row" style={hideControl ? { "visibility": "visible" } : { "visibility": "collapse" }}>
