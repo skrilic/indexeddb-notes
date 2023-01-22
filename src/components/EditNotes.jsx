@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { db } from "../db";
 import FooterBar from "./FooterBar";
 import ContentEditor from "./ContentEditor";
+import FroalaMde from "./FroalaMde";
 import DbContext from "../DbContext";
 
 const EditNotes = () => {
@@ -50,6 +51,8 @@ const EditNotes = () => {
              onChange={onChangeSimpleMde}
              options={{}}
             />
+
+            <FroalaMde />
 
             <FooterBar visible={true} bookmarkListIsOpened={true} />
         </div>
