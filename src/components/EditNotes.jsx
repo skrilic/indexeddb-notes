@@ -12,6 +12,7 @@ const EditNotes = () => {
     const [theNote, setTheNote] = useState({});
 
     const [recordValue, setRecordValue] = useState("");
+    // const [modelValue, setModelValue] = useState("");
 
     const {updateRecord} = useContext(DbContext);
 
@@ -23,6 +24,7 @@ const EditNotes = () => {
                 setTheNote(theNote);
 
                 setRecordValue(theNote.remark);
+                // setModelValue(theNote.remark);
             });
         }
         hasDetails.current = true;
@@ -32,8 +34,12 @@ const EditNotes = () => {
         setRecordValue(valMde);
     }
 
+    // const onChangeFroala = (valMde) => {
+    //     setModelValue(valMde);
+    // }
+
     return ( 
-        <div className="flex flex-col justify-self-center">
+        <div className="flex flex-col justify-self-center mb-10">
             <h4 className="m-auto">Details</h4>
             <small  className="m-auto">{theNote.datetime}</small>
             <br/>
@@ -48,11 +54,14 @@ const EditNotes = () => {
             
             <ContentEditor
                 value={theNote.remark}
-             onChange={onChangeSimpleMde}
-             options={{}}
+                 onChange={onChangeSimpleMde}
+                 options={{}}
             />
 
-            <FroalaMde />
+            {/*<FroalaMde*/}
+            {/*    model={modelValue}*/}
+            {/*    onModelChange={onChangeFroala}*/}
+            {/*/>*/}
 
             <FooterBar visible={true} bookmarkListIsOpened={true} />
         </div>

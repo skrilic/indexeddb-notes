@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+
+// import {FroalaPreview} from './FroalaMde';
+
 import DeleteButton from './DeleteButton';
 import UpdateButton from './UpdateButton';
 
@@ -15,6 +18,7 @@ function CardContent(props) {
         >
             <div className="p-2 w-full">
                 <ReactMarkdown children={card.remark} skipHtml={false} remarkPlugins={[remarkGfm]} />
+                {/*<FroalaPreview model={card.remark} />*/}
             </div>
             <div className="p-2 w-full text-xs">{card.datetime}</div>
 
