@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { db } from "../db";
 import FooterBar from "./FooterBar";
 import ContentEditor from "./ContentEditor";
-import FroalaMde from "./FroalaMde";
 import DbContext from "../DbContext";
 
 const EditNotes = () => {
@@ -34,10 +33,6 @@ const EditNotes = () => {
         setRecordValue(valMde);
     }
 
-    // const onChangeFroala = (valMde) => {
-    //     setModelValue(valMde);
-    // }
-
     return ( 
         <div className="flex flex-col justify-self-center mb-10">
             <h4 className="m-auto">Details</h4>
@@ -57,11 +52,6 @@ const EditNotes = () => {
                  onChange={onChangeSimpleMde}
                  options={{}}
             />
-
-            {/*<FroalaMde*/}
-            {/*    model={modelValue}*/}
-            {/*    onModelChange={onChangeFroala}*/}
-            {/*/>*/}
 
             <FooterBar visible={true} bookmarkListIsOpened={true} />
         </div>
