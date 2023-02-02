@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import files from "../data/files.json";
 
 const ReadingPlanList = ({ files }) => {
   const [selectedFile, setSelectedFile] = useState(null);
