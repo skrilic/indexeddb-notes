@@ -1,4 +1,5 @@
-"files" : {
+{
+  "files" : {
     "name": "Folder",
     "children": [
       {
@@ -20,4 +21,5 @@
       }
     ]
   }
+}
   
