@@ -1,0 +1,31 @@
+{
+  "files" : [
+    {
+      "name": "Folder",
+      "children": [
+        {
+          "name": "root",
+          "children" : ["topFile1", "topFile2"]
+        },
+        {
+          "name": "SubFolder1",
+          "children": [
+            "file1",
+            "file2",
+            "file3"
+          ]
+        },
+        {
+          "name": "SubFolder2",
+          "children": [
+            "file1",
+            "file2",
+            "file3",
+            "file4"
+          ]
+        }
+      ]
+    }
+  ]
+}
+  
