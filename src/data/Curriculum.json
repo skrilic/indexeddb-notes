@@ -1,0 +1,21 @@
+{
+  "course": [
+    {
+      "year": "1",
+      "semester": 1,
+      "day": "1",
+      "lesson": "Course Introduction",
+      "tag": "Introduction",
+      "video": "null"
+    },
+    {
+      "year": "1",
+      "semester": 1,
+      "day": "1",
+      "lesson": "First lesson",
+      "tag": "First",
+      "video": "null"
+    }
+  ]
+}
+  
