@@ -6,6 +6,8 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.0",
+    "@react-buddy/ide-toolbox": "^2.3.1",
+    "@react-buddy/palette-mui": "^5.0.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
@@ -24,13 +26,11 @@
     "remark-gfm": "^3.0.1",
     "styled-components": "^5.3.5",
     "styled-react-modal": "^3.0.1",
-    "web-vitals": "^2.1.4",
-    "@react-buddy/ide-toolbox": "^2.3.1",
-    "@react-buddy/palette-mui": "^5.0.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
