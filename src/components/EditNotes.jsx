@@ -49,8 +49,8 @@ const EditNotes = () => {
             
             <ContentEditor
                 value={theNote.remark}
-                 onChange={onChangeSimpleMde}
-                 options={{}}
+                onChange={onChangeSimpleMde}
+                options={{}}
             />
 
             <FooterBar visible={true} bookmarkListIsOpened={true} />

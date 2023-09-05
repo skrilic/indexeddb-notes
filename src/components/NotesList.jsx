@@ -5,8 +5,6 @@ import FooterBar from "./FooterBar";
 import NoteCard from "./NoteCard";
 import DbContext from "../DbContext";
 
-import ReadingPlanList from "./ReadingPlanList";
-
 const NotesList = () => {
 
     const { allRecords, getAllRecords, deleteRecord } = useContext(DbContext);
@@ -63,8 +61,6 @@ const NotesList = () => {
                 )
             }
             </div>
-            
-            <ReadingPlanList />
 
             <FooterBar visible={navbarVisible} homeIsOpened={true} />
         </div>
