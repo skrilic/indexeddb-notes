@@ -3,6 +3,7 @@ import CardContent from "./CardContent";
 
 const NoteCard = (props) => {
     const card = props.note;
+    const handleDelete = props.handleDelete;
     
     return (
     <motion.div 
@@ -10,9 +11,10 @@ const NoteCard = (props) => {
         whileTap={{ scale: 0.8, opacity: 1}}
         className="my-1"
     >
-        <div onClick={() => console.log("Expand note to view all the text entry...")}>
-            <CardContent card={card} />
-        </div>
+        {/*<div onClick={() => console.log("Expand note to view all the text entry...")}>*/}
+
+            <CardContent card={card} handleDelete={handleDelete} />
+        {/*</div>*/}
     </motion.div>
     )
 }

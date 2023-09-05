@@ -28,7 +28,6 @@ export function DbContextProvider({ children }) {
         }
     }
 
-
     const deleteRecord = (recordId) => {
         db.notes
                 .delete(recordId).then(function (deleteCount) {
