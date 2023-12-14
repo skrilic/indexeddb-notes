@@ -8,9 +8,9 @@ import DbContext from "../DbContext";
 const NotesList = () => {
 
     const { allRecords, getAllRecords, deleteRecord } = useContext(DbContext);
-    
+
     useEffect(() => {
-        getAllRecords();    
+        getAllRecords();
     },)
 
     function deleteNote(note_id) {
@@ -23,7 +23,7 @@ const NotesList = () => {
             window.open("/", "_self");
         }
     }
-    
+
     const [navbarVisible, setNavbarVisible] = useState(true);
 
 
@@ -37,14 +37,14 @@ const NotesList = () => {
                 setNavbarVisible(false);
             }
         };
-    
+
         window.addEventListener('scroll', handleScroll);
-    
+
         return () => {
-          window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         };
-      }, []);
-    
+    }, []);
+
     return (
         <div className="flex flex-col justify-center w-11/12 ml-auto mr-auto mt-4 mb-10">
             <div
@@ -55,16 +55,16 @@ const NotesList = () => {
             <h2 className="text-base flex justify-center">List of notes</h2>
 
             <div className="w-full">
-            {
-                allRecords?.map(note => 
-                    <NoteCard note={note} handleDelete={() => deleteNote(note.id)} key={note.id}/>
-                )
-            }
+                {
+                    allRecords?.map(note =>
+                        <NoteCard note={note} handleDelete={() => deleteNote(note.id)} key={note.id} />
+                    )
+                }
             </div>
 
             <FooterBar visible={navbarVisible} homeIsOpened={true} />
         </div>
-      );
+    );
 }
- 
+
 export default NotesList;
